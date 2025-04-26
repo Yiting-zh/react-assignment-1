@@ -1,3 +1,4 @@
+import "../ProjectCard.css"
 
 function ProjectCard(props) {
 

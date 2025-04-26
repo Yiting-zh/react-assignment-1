@@ -1,17 +1,17 @@
 .project {
   border: 1px solid yellow;
   border-radius: 15px;
-  box-shadow: 5px 5px 5px black;
+  box-shadow: 5px 5px 5px rgb(171, 165, 165);
   padding: 20px;
   margin: 10px;
   text-align: center;
-  max-width: 50px;
+  max-width: 500px;
   display: inline-block;
 }
 
 
-.img {
-  max-width: 60%;
+.project-pic {
+  max-width: 100%;
   height: auto;
   border-radius: 10px;
   margin-bottom: 10px;
