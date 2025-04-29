@@ -3,12 +3,20 @@ import GenesisPortfolio from "../assets/bar-website.jpg";
 import BarWebsite from "../assets/genesis-portfolio.jpg";
 import InvitationCard from "../assets/invitation-card.jpg";
 import { useState } from "react";
+import PopupWindow from "../components/PopupWindow";
 
 
 
 
 function Projects(){
   const [showProjects, setShowProjects] = useState(false); 
+  const [popupInfo, setPopupInfo] = useState({});
+  const [isOpen, setIsOpen] = useState(false);
+  const closePopup = () => {  setIsOpen(false);};
+  const openPopup = (info) => {
+    setPopupInfo(info);
+    setIsOpen(true);
+  };
 
   return (
     <div>
@@ -26,10 +34,16 @@ function Projects(){
             image={GenesisPortfolio}
             github="https://github.com/Yiting-zh/genesis-portfolio-design"
             tech="html, css, scss"
-            description="Recreate the Figma file for Genesis portfolio."
-            learnings="In this project, I learned how to structure a project properly, organize styles using Sass, create syntactically correct forms with basic validation, and improved my understanding of responsive and accessible design."
-            role="Solo Project"
-            challenges="The main challenge I faced in this project was ensuring proper project structure and attention to detail in HTML, CSS, and form validation to meet development best practices."
+            onClick={() =>
+              openPopup({
+                description: "Description: Recreate the Figma file for Genesis portfolio.",
+                learnings:
+                  "Learnings: Learned how to structure a project, use Sass, basic validation, and responsive design.",
+                role: "Role: Solo Project",
+                challenges:
+                  "Challenges: Attention to detail in HTML/CSS structure and form validation.",
+              })
+            }
           />
 
           <ProjectCard
@@ -37,10 +51,14 @@ function Projects(){
             image={BarWebsite}
             github="https://github.com/Yiting-zh/landing-page.git"
             tech="html, css"
-            description="Recreate the Figma file for Genesis portfolio."
-            learnings="In this project, I learned how to structure a project properly, organize styles using Sass, create syntactically correct forms with basic validation, and improved my understanding of responsive and accessible design."
-            role="Solo Project"
-            challenges="The main challenge I faced in this project was ensuring proper project structure and attention to detail in HTML, CSS, and form validation to meet development best practices."
+            onClick={() =>
+              openPopup({
+                description: "Description: A bar website design from Figma.",
+                learnings: "Learnings: Practiced flexbox, layout, and responsive design.",
+                role: "Role: Responsible for landing page",
+                challenges: "Challenges: Responsive layout and pixel-perfect styling.",
+              })
+            }
           />
 
           <ProjectCard
@@ -48,12 +66,26 @@ function Projects(){
             image={InvitationCard}
             github="https://github.com/Yiting-zh/invitation-card.git"
             tech="html, css"
-            description="Recreate the Figma file for Genesis portfolio."
-            learnings="In this project, I learned how to structure a project properly, organize styles using Sass, create syntactically correct forms with basic validation, and improved my understanding of responsive and accessible design."
-            role="Solo Project"
-            challenges="The main challenge I faced in this project was ensuring proper project structure and attention to detail in HTML, CSS, and form validation to meet development best practices."
+            onClick={() =>
+              openPopup({
+                description: "Description: Designed a digital invitation card.",
+                learnings: "Learnings: CSS styling and font hierarchy.",
+                role: "Role: Solo Project",
+                challenges: "Challenges: Precise visual layout matching the Figma design.",
+              })
+            }
           />
         </div>
+      )}
+
+{isOpen && (
+        <PopupWindow
+          description={popupInfo.description}
+          learnings={popupInfo.learnings}
+          role={popupInfo.role}
+          challenges={popupInfo.challenges}
+          onClose={closePopup}
+        />
       )}
     </div>
   );
